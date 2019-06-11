@@ -1,7 +1,9 @@
 package com.z.imageloadtest.imp;
 
-public interface ImageLoadListener {
-    void onSuccess();
+import android.graphics.Bitmap;
 
-    void onFail();
+public interface ImageLoadListener {
+    void onSuccess(Bitmap bitmap);
+
+    void onFail(Exception e);
 }

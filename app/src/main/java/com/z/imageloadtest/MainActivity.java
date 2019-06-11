@@ -1,8 +1,10 @@
 package com.z.imageloadtest;
 
+import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -41,13 +43,14 @@ public class MainActivity extends AppCompatActivity {
                 .setImageView(imageView)
                 .setImageLoadListener(new ImageLoadListener() {
                     @Override
-                    public void onSuccess() {
-
+                    public void onSuccess(Bitmap bitmap) {
+                        Log.d("mytest","---success---");
                     }
 
                     @Override
-                    public void onFail() {
+                    public void onFail(Exception e) {
 
+                        Log.d("mytest",e.getLocalizedMessage());
                     }
                 })
                 .build();
