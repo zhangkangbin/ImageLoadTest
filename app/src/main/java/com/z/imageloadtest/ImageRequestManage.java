@@ -1,5 +1,6 @@
 package com.z.imageloadtest;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -21,10 +22,19 @@ public class ImageRequestManage {
 
     private LinkedBlockingQueue<ImageRequest> linkedBlockingQueue = new LinkedBlockingQueue<>();
 
-    private static final ImageRequestManage ourInstance = new ImageRequestManage();
+    private static ImageRequestManage imageRequestManageInstance;
 
-    public static ImageRequestManage getInstance() {
-        return ourInstance;
+    public static ImageRequestManage get(Context context) {
+        if (imageRequestManageInstance == null) {
+            synchronized (ImageRequestManage.class) {
+                if (imageRequestManageInstance == null) {
+                    imageRequestManageInstance = new ImageRequestManage();
+                }
+            }
+
+        }
+
+        return imageRequestManageInstance;
     }
 
     private ImageRequestManage() {
@@ -44,7 +54,7 @@ public class ImageRequestManage {
         public void run() {
 
             try {
-            //    Thread.sleep(2000);
+                //    Thread.sleep(2000);
                 ImageRequest imageRequest = linkedBlockingQueue.take();
                 final ImageRequest.Builder builder = imageRequest.getBuilder();
 

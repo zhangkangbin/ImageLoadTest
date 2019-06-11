@@ -5,9 +5,15 @@ import android.widget.ImageView;
 import com.z.imageloadtest.imp.ImageLoadListener;
 
 public class ImageRequest {
+    private static final ImageRequest ourInstance = new ImageRequest();
 
-    ImageRequest(Builder builder) {
+    public static ImageRequest getInstance() {
+        return ourInstance;
+    }
+
+    public ImageRequest setBuilder(Builder builder) {
         this.builder = builder;
+        return this;
     }
 
     public Builder getBuilder() {
@@ -32,6 +38,7 @@ public class ImageRequest {
         }
 
         private String tag;
+
         public String getUrl() {
             return url;
         }
@@ -60,7 +67,7 @@ public class ImageRequest {
         }
 
         public ImageRequest build() {
-            return new ImageRequest(this);
+            return getInstance().setBuilder(this);
         }
 
     }
