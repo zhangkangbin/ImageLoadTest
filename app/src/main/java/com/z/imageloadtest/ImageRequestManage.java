@@ -10,9 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class ImageRequestManage {
 
 
-
     private LinkedBlockingQueue<ImageRequest> linkedBlockingQueue = new LinkedBlockingQueue<>();
-
     private static ImageRequestManage imageRequestManageInstance;
 
     public static ImageRequestManage get(Context context) {
@@ -24,6 +22,9 @@ public class ImageRequestManage {
             }
 
         }
+
+
+
 
         return imageRequestManageInstance;
     }
@@ -37,9 +38,6 @@ public class ImageRequestManage {
         linkedBlockingQueue.add(imageRequest);
         fixedThreadPool.execute(new ExecuteRunnable(linkedBlockingQueue));
     }
-
-
-
 
 
 }

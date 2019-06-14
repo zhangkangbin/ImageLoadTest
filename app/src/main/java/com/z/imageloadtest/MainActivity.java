@@ -1,5 +1,6 @@
 package com.z.imageloadtest;
 
+import android.Manifest;
 import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 
 import com.z.imageloadtest.imp.ImageLoadListener;
 
+import pub.devrel.easypermissions.EasyPermissions;
+
 public class MainActivity extends AppCompatActivity {
     ImageView imageView;
 
@@ -17,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+        EasyPermissions.requestPermissions(this, "权限kkk",
+                1, perms);
 
         findViewById(R.id.btnAdd).setOnClickListener(new View.OnClickListener() {
             @Override
