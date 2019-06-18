@@ -17,7 +17,7 @@ public class DiskLruCacheHelper {
 
                 if (diskLruCache == null) {
                     try {
-                        File file = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/imageTest");
+                        File file = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/aaaImageTest");
                         diskLruCache = DiskLruCache.open(file,
                                 22, 1, 1024 * 1024);
                     } catch (IOException e) {

@@ -108,20 +108,25 @@ public final class DiskLruCache implements Closeable {
 
         // If a bkp file exists, use it instead.
         File backupFile = new File(directory, JOURNAL_FILE_BACKUP);
+        //如果备份文件存在，使用备份文件。
         if (backupFile.exists()) {
             File journalFile = new File(directory, JOURNAL_FILE);
             // If journal file also exists just delete backup file.
+            //如果缓存文件存在就删除缓存文件
             if (journalFile.exists()) {
                 backupFile.delete();
             } else {
+                //复杂并重命名
                 renameTo(backupFile, journalFile, false);
             }
         }
 
         // Prefer to pick up where we left off.
         DiskLruCache cache = new DiskLruCache(directory, appVersion, valueCount, maxSize);
+        //如果 journal 存在
         if (cache.journalFile.exists()) {
             try {
+                //读取 journal文件和检验信息
                 cache.readJournal();
                 cache.processJournal();
                 return cache;
@@ -376,6 +381,7 @@ public final class DiskLruCache implements Closeable {
         entry.currentEditor = editor;
 
         // Flush the journal before creating files to prevent file leaks.
+        //写入key，先假定它是一条脏数据（commit时候无异常会标记为干净的数据）
         journalWriter.write(DIRTY + ' ' + key + '\n');
         journalWriter.flush();
         return editor;
@@ -437,6 +443,7 @@ public final class DiskLruCache implements Closeable {
             if (success) {
                 if (dirty.exists()) {
                     File clean = entry.getCleanFile(i);
+                    //之前假定为脏数据上位为有效数据。
                     dirty.renameTo(clean);
                     long oldLength = entry.lengths[i];
                     long newLength = clean.length();

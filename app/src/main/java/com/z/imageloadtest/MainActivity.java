@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
 */
 
     }
-    private String imgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559624" +
-            "119735&di=9395094668576f56a69a5d9043f6bb41&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201804%2F29%2F20180429192715_ednpc.jpeg";
+    private String imgUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561361401&di" +
+            "=a91d3393cfc6c71f6652dca51bed4c1b&imgtype=jpg&er=1&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201802%2F24%2F20180224130825_bsgtr.png";
     private void addRequest(String tag) {
 
         ImageRequest imageRequest = new ImageRequest.Builder()
