@@ -68,7 +68,9 @@ public final class DiskLruCache implements Closeable {
                 if (journalWriter == null) {
                     return null; // Closed.
                 }
+                //调整size
                 trimToSize();
+                //redundantOpCount变量值达到2000的时候,就会触发重构journal的事件
                 if (journalRebuildRequired()) {
                     rebuildJournal();
                     redundantOpCount = 0;
