@@ -316,6 +316,7 @@ public final class DiskLruCache implements Closeable {
     public synchronized Snapshot get(String key) throws IOException {
         checkNotClosed();
         validateKey(key);
+        //LinkedHashMap 的accessOrder 是 true,会将节点移到最后
         Entry entry = lruEntries.get(key);
         if (entry == null) {
             return null;
